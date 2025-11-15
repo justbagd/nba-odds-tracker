@@ -6,7 +6,7 @@ def fetch_nba_odds():
     
     """ Fetech NBA odds from The Odds API """
 
-    url = f'{ODDS_API_BASE_URL}/sports/americanfootball_nfl/odds/?apiKey=YOUR_API_KEY&regions=us&markets=h2h,spreads&oddsFormat=american(opens new window)
+    url = f'{ODDS_API_BASE_URL}/sports/basketball_nba/odds/'
 
 #Example Response'
     

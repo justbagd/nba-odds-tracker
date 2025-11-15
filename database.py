@@ -10,7 +10,7 @@ def init_db():
     # create the table
     cur.execute(
         """ CREATE TABLE IF NOT EXISTS odds_histroy (
-            id INTEGGER PRIMARY KEY AUTOINCREMENT,
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
             game_id TEXT,
             bookmaker TEXT,
             team TEXT,
@@ -18,7 +18,7 @@ def init_db():
             prob, REAL
             timestamp DATETIME DEFAULT CURRENT_TIMESTAMP)"""
     )
-    
+     
     con.commit()
     con.close()
 
@@ -33,3 +33,5 @@ def save_odds(game_id, bookmaker, team, price, prob):
     
     con.commit()
     con.close()
+
+init_db()
