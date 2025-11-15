@@ -10,3 +10,4 @@ ODDS_API_BASE_URL = 'https://api.the-odds-api.com/v4'
 
 # App Config
 DEBUG = True
+

@@ -1,7 +1,8 @@
 import requests
+from config import ODDS_API_KEY
 
 # Hardcode the API key for now
-API_KEY = ''
+API_KEY = ODDS_API_KEY
 
 # The Odds API endpoint for NBA
 url = f'https://api.the-odds-api.com/v4/sports/basketball_nba/odds/?apiKey={API_KEY}&regions=us&markets=h2h,spreads'
@@ -15,7 +16,7 @@ response = requests.get(url)
 if response.status_code == 200:
     games = response.json()
     
-    print(f"Found {len(games)} NBA games with odds:\n")
+
     
     # Loop through each game
     for game in games:

@@ -6,6 +6,7 @@ from config import DEBUG
 # create app instance
 app = Flask(__name__)
 
+
 # Homepage
 @app.route('/')
 def home():
