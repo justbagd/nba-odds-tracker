@@ -3,6 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+
     <title>NBA Odds Tracker</title>
   </head>
 
@@ -32,34 +34,50 @@
           <table>
             <thead>
               <tr>
-                <td>SportsBook</td>
-                <td>Away</td>
-                <td>Home</td>
+                <th>Sportsbook</th>
+                <th>Away Odds</th>
+                <th>Away Prob</th>
+                <th>Home Odds</th>
+                <th>Home Prob</th>
               </tr>
             </thead>
 
-            {% if game.bookmakers %} {% for book in game.bookmakers %}
-            <tr>
-              <td>{{ book.title }}</td>
+            <tbody>
+              {% if game.bookmakers %} {% for book in game.bookmakers %}
+              <tr>
+                <td>{{ book.title }}</td>
 
-              {% for market in book.markets %} {% if market.key == "h2h" %}
+                {% for market in book.markets %} {% if market.key == "h2h" %}
+                <!--                    away                              -->
+                                    
+                <td class="{% if market.outcomes[0].is_best %}best-odd {% endif %}">
+                  {% if market.outcomes[0].price > 0 %} +{% endif %} {{
+                  market.outcomes[0].price }}
+                </td>
 
-              <td>
-                {% if market.outcomes[0].price > 0 %} +{% endif %} {{
-                market.outcomes[0].price }}
-              </td>
+                <td class="{% if market.outcomes[0].is_best %}best-odd {% endif %}">
+                  {{ market.outcomes[0].prob}}%
+                </td>
+                <!--                    home                            -->
+                <td class="{% if market.outcomes[0].is_best %}best-odd {% endif %}">
+                  {% if market.outcomes[1].price > 0 %} +{% endif %} {{
+                  market.outcomes[1].price }}
+                </td>
 
-              <td>
-                {% if market.outcomes[1].price > 0 %} +{% endif %} {{
-                market.outcomes[1].price }}
-              </td>
+                <td class="{% if market.outcomes[0].is_best %}best-odd {% endif %}">
+                  {{ market.outcomes[1].prob}}%
+                </td>
 
-              {% endif %} {% endfor %}
-            </tr>
+  
+                {% endif %} {% endfor %}
+              </tr>
 
-            {% endfor %} {% else %}
-            <p>No bookmaker data available for this game.</p>
-            {% endif %}
+              {% endfor %} {% else %}
+              <p>No bookmaker data available for this game.</p>
+              {% endif %}
+            </tbody>
+
+
           </table>
         </section>
         {% endfor %}
